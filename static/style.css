@@ -91,3 +91,22 @@ h1 {
         .btn-danger-link:active {
             background-color: #bd2130;
         }
+
+        .btn-info-link {
+            display: inline-block;
+            background-color: #0dcaf0; /* Bootstrap 5 "info" blue */
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-info-link:hover {
+            background-color: #31d2f2;
+        }
+
+        .btn-info-link:active {
+            background-color: #0bace0;
+        }

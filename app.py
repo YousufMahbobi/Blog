@@ -1,5 +1,5 @@
-from flask import Flask, render_template
-from data.json_file_handler import read_json
+from flask import Flask, render_template, request, redirect, url_for
+from data.json_file_handler import read_json, write_json
 app = Flask(__name__)
 
 
@@ -9,6 +9,21 @@ def index():
     # add code here to fetch the job posts from a file
     blog_posts = read_json()
     return render_template('index.html', posts=blog_posts)
+
+@app.route('/add', methods=['GET', 'POST'])
+def add():
+    if request.method == 'POST':
+        blog_posts = read_json()
+        total_posts = len(blog_posts)
+        post_obj = {'id': total_posts + 1,
+                    'title': request.form['title'],
+                    'content': request.form['content']
+                   }
+        blog_posts.append(post_obj)
+        write_json(blog_posts)
+        return redirect(url_for('index'))
+    return render_template('add.html')
+
 
 
 if __name__ == '__main__':
